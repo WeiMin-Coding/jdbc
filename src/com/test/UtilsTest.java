@@ -40,4 +40,22 @@ public class UtilsTest {
 
         jdbcUtils.close();
     }
+
+    @Test
+    public void testJDBCUtils02() throws Exception {
+        JDBCUtils jdbcUtils = new JDBCUtils();
+        jdbcUtils.getConnection();
+
+        int res = jdbcUtils.executeUpdate("update news set title = '123' where id = 0");
+        System.out.println(res);
+    }
+
+    @Test
+    public void testJDBCUtils03() throws Exception {
+        JDBCUtils jdbcUtils = new JDBCUtils();
+        jdbcUtils.getConnection();
+
+        int res = jdbcUtils.executeUpdate("update news set title = '123' where id = 0");
+        System.out.println(res);
+    }
 }
