@@ -70,6 +70,16 @@ public class JDBCUtils {
 
     }
 
+//    public PreparedStatement getPreparedStatement() {
+//        try {
+//            this.statement = this.connection.createStatement();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        return this.preparedStatement;
+//    }
+
     public ResultSet executeQuery(String sql) throws Exception {
         this.preparedStatement = connection.prepareStatement(sql);
         return preparedStatement.executeQuery();
@@ -80,9 +90,14 @@ public class JDBCUtils {
         return this.preparedStatement.executeUpdate();
     }
 
-    public void close() throws SQLException {
-        this.statement.close();
-        this.preparedStatement.close();
-        this.connection.close();
+    public void close() {
+        try {
+            this.statement.close();
+            if (this.preparedStatement != null) this.preparedStatement.close();
+            this.connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }

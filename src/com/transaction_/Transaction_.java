@@ -54,6 +54,8 @@ public class Transaction_ {
             } catch (Exception a) {
                 a.printStackTrace();
             }
+        } finally {
+            jdbcUtils.close();
         }
     }
 }
