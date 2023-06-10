@@ -18,7 +18,7 @@ public class DruidDemo {
         DataSource ds = DruidDataSourceFactory.createDataSource(properties);
         Connection con = ds.getConnection();
 
-        String sql = "SELECT * FROM s830_user limit 10";
+        String sql = "SELECT * FROM actor limit 10";
 
         //获取执行sql的对象
         Statement statement = con.createStatement();

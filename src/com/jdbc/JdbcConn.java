@@ -1,13 +1,10 @@
 package com.jdbc;
 
 import com.mysql.cj.jdbc.Driver;
-import com.sun.javafx.binding.StringFormatter;
 import org.junit.Test;
 
-import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.Statement;
 import java.util.Properties;
 
 public class JdbcConn {
@@ -64,43 +61,5 @@ public class JdbcConn {
 
         Connection connection = DriverManager.getConnection(url, properties);
         System.out.println(connection);
-    }
-
-    @Test
-    public void connect05() throws Exception {
-        Properties properties = new Properties();
-        properties.load(new FileInputStream("src/mysql.properties"));
-
-        String driver = properties.getProperty("driver");
-        String url = properties.getProperty("url");
-        String user = properties.getProperty("user");
-        String password = properties.getProperty("password");
-
-        Class.forName(driver);
-        Connection connection = DriverManager.getConnection(url, user, password);
-        System.out.println(connection);
-    }
-
-    @Test
-    public void test01() throws Exception {
-        Properties properties = new Properties();
-        properties.load(new FileInputStream("src/mysql.properties"));
-
-        String driver = properties.getProperty("driver");
-        String url = properties.getProperty("url");
-        String user = properties.getProperty("user");
-        String password = properties.getProperty("password");
-
-        Class.forName(driver);
-        Connection connection = DriverManager.getConnection(url, user, password);
-        Statement statement = connection.createStatement();
-
-        for (int i = 0; i <= 5; i++) {
-            String sql = String.format("insert into news values (%s, 'Title%s', 'Content%s')", i, i, i);
-            int res = statement.executeUpdate(sql);
-            if (res > 0) {
-                System.out.println(sql + " OK");
-            }
-        }
     }
 }
